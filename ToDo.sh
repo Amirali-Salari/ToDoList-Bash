@@ -40,8 +40,17 @@ case $command in
         echo "Task added successfully."
     fi
     ;;
+    
+  clear)
+    echo "" > tasks.csv
+    ;;
+    
+  list)
+    awk '{print NR " | " $0}' tasks.csv | sed 's/,/ | /g'
+    ;;
+    
   *)
-    echo "Invalid Command: $command"
+    echo "Command Not Supported!"
     exit 1
     ;;
 esac
