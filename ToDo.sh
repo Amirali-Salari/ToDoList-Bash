@@ -48,6 +48,14 @@ case $command in
   list)
     awk '{print NR " | " $0}' tasks.csv | sed 's/,/ | /g'
     ;;
+
+  find)
+    awk '{print NR " | " $0}' tasks.csv | grep "$1" | sed 's/,/ | /g'
+    ;;
+
+  done)
+    sed -i "${1}s/^0/1/" tasks.csv
+    ;;
     
   *)
     echo "Command Not Supported!"
